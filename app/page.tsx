@@ -1,6 +1,12 @@
 import Image from "next/image";
+import { GetSession, getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getSession();
+  if (session?.user) {
+    redirect("/dashboard");
+  }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -52,25 +58,7 @@ export default function Home() {
               -&gt;
             </span>
           </h2>
-         
         </a>
-
-        <a
-          href=""
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Logout{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-         
-        </a>
-
-       
       </div>
     </main>
   );
