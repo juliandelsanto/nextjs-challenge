@@ -23,11 +23,11 @@ export default async function Home() {
           priority
         />
       </div>
-      
+
       <div className="mb-32 text-center w-[240px] lg:mb-0 mt-9">
         <CustomLink
-          href="api/auth/login" 
-          textSize="text-2xl" 
+          href="api/auth/login"
+          textSize="text-2xl"
           title="Login or register"
         />
       </div>

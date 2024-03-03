@@ -6,7 +6,6 @@ const Pagination = ({
   totalItems,
   paginate,
 }: PaginationProps) => {
-  
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
@@ -36,9 +35,13 @@ const Pagination = ({
       <button
         onClick={handlePrevious}
         disabled={currentPage === 1}
-        className={`px-4 py-2 border border-solid ${currentPage === 1 ? 'border-gray-400 text-gray-400' : 'border-gray-200 text-gray-200 hover:border-[#00C8D3]'} rounded-md transition duration-200`}
+        className={`px-4 py-2 border border-solid ${
+          currentPage === 1
+            ? "border-gray-400 text-gray-400"
+            : "border-gray-200 text-gray-200 hover:border-[#00C8D3]"
+        } rounded-md transition duration-200`}
       >
-        Anterior
+        Previous
       </button>
       <p className="">{currentPage}</p>
       <button
@@ -46,7 +49,7 @@ const Pagination = ({
         disabled={currentPage === totalPages}
         className="px-4 py-2  border border-solid border-gray-200 text-gray-200 rounded-md hover:border-[#00C8D3] transition duration-200"
       >
-        Siguiente
+        Next
       </button>
     </nav>
   );

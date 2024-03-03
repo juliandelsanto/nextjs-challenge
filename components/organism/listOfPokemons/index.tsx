@@ -1,51 +1,51 @@
-import { useState, useEffect } from 'react';
-import { getPokemonData } from '@/service/getPokemonData';
-import Pagination from '@/components/molecules/Pagination';
-import Pokemon from '@/types/Pokemon';
-import Spinner from '@/components/atoms/Spinner';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { getPokemonData } from "@/service/getPokemonData";
+import Pagination from "@/components/molecules/Pagination";
+import Pokemon from "@/types/Pokemon";
+import Spinner from "@/components/atoms/Spinner";
 
 const ListOfPokemons = () => {
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [loadingTime, setLoadingTime] = useState<number | null>(null); // Tiempo de carga inicialmente nulo
+  const [loadingTime, setLoadingTime] = useState<number | null>(null); 
 
   useEffect(() => {
     const fetchData = async () => {
-      const startTime = performance.now(); // Captura el tiempo de inicio
+      const startTime = performance.now();
       const pokemonData = await getPokemonData();
-      const endTime = performance.now(); // Captura el tiempo de fin
+      const endTime = performance.now(); 
       setPokemonData(pokemonData);
-      setLoadingTime(endTime - startTime); // Calcula el tiempo transcurrido
+      setLoadingTime(endTime - startTime); 
     };
     fetchData();
   }, []);
 
-  // Paginar los resultados
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = pokemonData.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Cambiar de página
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div className="flex flex-col items-center w-full">
-      {loadingTime === null && (
-        <Spinner />
-      ) }
+      {loadingTime === null && <Spinner />}
       <ul className="lg:w-[80%]">
         {currentItems.map((poke, index) => (
           <li key={index}>
-            <a className="border p-4 border-grey my-2 hover:shadow-md capitalize flex items-center text-lg bg-black rounded-md ">
+            <Link
+              className="border p-4 border-grey my-2  hover:border-[#00C8D3] transition duration-200 capitalize flex items-center text-lg bg-black rounded-md cursor-pointer"
+              href={`/pokemon/${poke.name}`}
+              key={poke.name + "Card"}
+            >
               <img
                 src={poke.image}
                 alt={poke.name}
                 className="w-20 h-20 mr-3"
               />
-              <span className="mr-2 font-bold">{index + 1}.</span>
               {poke.name}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
