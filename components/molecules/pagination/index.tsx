@@ -6,6 +6,7 @@ const Pagination = ({
   totalItems,
   paginate,
 }: PaginationProps) => {
+
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 

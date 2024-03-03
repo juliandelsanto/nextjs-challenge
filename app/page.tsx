@@ -23,7 +23,6 @@ export default async function Home() {
           priority
         />
       </div>
-
       <div className="mb-32 text-center w-[240px] lg:mb-0 mt-9">
         <CustomLink
           href="api/auth/login"
