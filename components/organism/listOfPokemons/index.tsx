@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getPokemonData } from "@/service/getPokemonData";
-import Pagination from "@/components/molecules/pagination";
+import Pagination from "@/components/molecules/Pagination";
 import Pokemon from "@/types/Pokemon";
 
 const ListOfPokemons = () => {
