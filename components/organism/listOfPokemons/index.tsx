@@ -25,12 +25,12 @@ const ListOfPokemons = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div>
+    <div className="flex flex-col items-center w-full">
       <h1 className="text-4xl mb-8 text-center ">The Nextjs Pokedex</h1>
-      <ul>
+      <ul className="lg:w-[80%]">
         {currentItems.map((poke, index) => (
           <li key={index}>
-            <a className="border p-4 border-grey my-2 hover:shadow-md capitalize flex items-center text-lg bg-gray-200 rounded-md">
+            <a className="border p-4 border-grey my-2 hover:shadow-md capitalize flex items-center text-lg bg-black rounded-md ">
               <img
                 src={poke.image}
                 alt={poke.name}
