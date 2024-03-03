@@ -1,11 +1,12 @@
 import { useState } from "react";
 import PaginationProps from "@/types/Pagination";
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination = ({
   itemsPerPage,
   totalItems,
   paginate,
-}) => {
+}: PaginationProps) => {
+  
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
