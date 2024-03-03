@@ -13,6 +13,8 @@ export default function DashboardPage() {
 
   return (
     <div className="container mx-auto p-4">
+      <h1 className="font-bold text-6xl mt-24 mb-8 text-center ">PokeNext</h1>
+
       <ListOfPokemons />
       
     </div>

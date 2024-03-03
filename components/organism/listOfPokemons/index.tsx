@@ -1,17 +1,22 @@
-import { useState, useEffect } from "react";
-import { getPokemonData } from "@/service/getPokemonData";
-import Pagination from "@/components/molecules/Pagination";
-import Pokemon from "@/types/Pokemon";
+import { useState, useEffect } from 'react';
+import { getPokemonData } from '@/service/getPokemonData';
+import Pagination from '@/components/molecules/Pagination';
+import Pokemon from '@/types/Pokemon';
+import Spinner from '@/components/atoms/Spinner';
 
 const ListOfPokemons = () => {
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [loadingTime, setLoadingTime] = useState<number | null>(null); // Tiempo de carga inicialmente nulo
 
   useEffect(() => {
     const fetchData = async () => {
+      const startTime = performance.now(); // Captura el tiempo de inicio
       const pokemonData = await getPokemonData();
+      const endTime = performance.now(); // Captura el tiempo de fin
       setPokemonData(pokemonData);
+      setLoadingTime(endTime - startTime); // Calcula el tiempo transcurrido
     };
     fetchData();
   }, []);
@@ -26,7 +31,9 @@ const ListOfPokemons = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <h1 className="text-4xl mb-8 text-center ">The Nextjs Pokedex</h1>
+      {loadingTime === null && (
+        <Spinner />
+      ) }
       <ul className="lg:w-[80%]">
         {currentItems.map((poke, index) => (
           <li key={index}>
