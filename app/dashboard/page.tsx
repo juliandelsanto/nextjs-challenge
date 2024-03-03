@@ -1,4 +1,4 @@
-'use client'
+
 import { useEffect } from 'react';
 import { getSession } from '@auth0/nextjs-auth0';
 import ListOfPokemons from '@/components/organism/listOfPokemons';
